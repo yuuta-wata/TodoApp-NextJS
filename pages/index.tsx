@@ -1,21 +1,29 @@
 import Head from 'next/head'
-import { GetStaticProps } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
-import { DemoDate } from '../demoDate'
+type userData = {
+  id: string;
+  nickName: string;
+  todoList: {
+      id: string;
+      item: string;
+  }[];
+}[]
 
-interface Props {
-  date: {
-    id: string
-    nickName: string
-    todoList: {
-      id: string
-      item: string
-    }[]
-  }[]
+export const getStaticProps = async () => {
+  const json = JSON.stringify(require('../json/data.json'))
+  const fetchUserData: userData = JSON.parse(json)
+  return {
+    props: {
+      data: fetchUserData.slice(0, 5)
+    }
+  }
 }
 
-export default function Top(props: Props) {
+export default function Top({data}: InferGetStaticPropsType<typeof getStaticProps>) {
+  
+
   return (
     <div className='container'>
       <Head>
@@ -40,13 +48,14 @@ export default function Top(props: Props) {
           </Link>
         </div>
         <div style={{ flexDirection: 'column', width: '50%' }}>
-          {props.date.map(user => (
+          {data.map(user => (
             <div
               style={{
                 flexDirection: 'row',
                 display: 'flex',
                 marginBottom: 10
               }}
+              key={user.id}
             >
               <div style={{ display: 'flex', width: '20%' }}>
                 {user.nickName}
@@ -104,11 +113,3 @@ export default function Top(props: Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const sliceDate = DemoDate.slice(0, 5)
-  return {
-    props: {
-      date: sliceDate
-    }
-  }
-}

@@ -1,12 +1,9 @@
 import Link from 'next/link'
-import { GetServerSideProps } from 'next'
-
-import { DemoDate } from '../demoDate'
+import { InferGetServerSidePropsType } from 'next'
 
 import TimeLineCell from '../components/TimeLineCell'
 
-interface Props {
-  date: {
+type userData = {
     id: string
     nickName: string
     todoList: {
@@ -14,31 +11,51 @@ interface Props {
       item: string
     }[]
   }[]
+
+export const getServerSideProps = async () => {
+  const json = JSON.stringify(require('../json/data.json'))
+  const fetchUserData: userData = JSON.parse(json)
+  return {
+    props: {
+      data: fetchUserData
+    }
+  }
 }
 
-export default function Home(props: Props) {
+export default function Home({data}: InferGetServerSidePropsType<typeof getServerSideProps> ) {
   return (
-    <div>
+    <div className='container'>
       <Link href='/'>
         <a>Topへ戻る</a>
       </Link>
       <main>
-        <div className='timeLine'>
-          {props.date.map(user => (
-            <TimeLineCell nickName={user.nickName} todoList={user.todoList} />
+        <div className='time-line'>
+          {data.map(user => (
+            <TimeLineCell nickName={user.nickName} todoList={user.todoList} key={user.id} />
           ))}
         </div>
       </main>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        .container {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        main {
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .time-line {
+          width: 50%;
+          background: pink;
+        }
+      `}</style>
     </div>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = DemoDate
-  return {
-    props: {
-      date: res
-    }
-  }
 }
