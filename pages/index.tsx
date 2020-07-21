@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
-import {DemoDate} from '../demoDate'
+import { DemoDate } from '../demoDate'
 
 interface Props {
   date: {
@@ -17,30 +17,55 @@ interface Props {
 
 export default function Top(props: Props) {
   return (
-    <div className="container">
+    <div className='container'>
       <Head>
         <title>Todo App</title>
       </Head>
       <main>
-          <div style={{display: 'flex', flexDirection: 'column' ,width: '50%', justifyContent: 'center', alignItems: 'center'}}>
-            <p>TodoアプリNext.jsバージョンへようこそ！</p>
-            <p>Next.jsバージョンでは皆んなのTodoがタイムラインで見ることが出来ます。</p>
-            <Link href='/home'>
-              <a>見にいく！！！</a>
-            </Link>
-          </div>
-          <div style={{flexDirection: 'column', width: "50%"}}>
-            {props.date.map(user => (
-              <div style={{flexDirection: 'row', display: 'flex', marginBottom: 10 }}>
-                <div style={{display: 'flex', width: "20%"}}>{user.nickName}</div>
-                <div style={{flexDirection: 'column', display: 'flex', width: "50%"}} key={user.id}>
-                  {user.todoList.map(({ id, item}) => (
-                    <div key={id}>{item}</div>
-                  ))}
-                </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '50%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <p>TodoアプリNext.jsバージョンへようこそ！</p>
+          <p>
+            Next.jsバージョンでは皆んなのTodoがタイムラインで見ることが出来ます。
+          </p>
+          <Link href='/home'>
+            <a>見にいく！！！</a>
+          </Link>
+        </div>
+        <div style={{ flexDirection: 'column', width: '50%' }}>
+          {props.date.map(user => (
+            <div
+              style={{
+                flexDirection: 'row',
+                display: 'flex',
+                marginBottom: 10
+              }}
+            >
+              <div style={{ display: 'flex', width: '20%' }}>
+                {user.nickName}
               </div>
-            ))}
-          </div>
+              <div
+                style={{
+                  flexDirection: 'column',
+                  display: 'flex',
+                  width: '50%'
+                }}
+                key={user.id}
+              >
+                {user.todoList.map(({ id, item }) => (
+                  <div key={id}>{item}</div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
 
       <style jsx>{`
@@ -59,7 +84,6 @@ export default function Top(props: Props) {
           justify-content: center;
           align-items: center;
         }
-
       `}</style>
 
       <style jsx global>{`
