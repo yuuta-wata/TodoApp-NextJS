@@ -25,10 +25,15 @@ export const getServerSideProps = async () => {
 export default function Home({data}: InferGetServerSidePropsType<typeof getServerSideProps> ) {
   return (
     <div className='container'>
-      <Link href='/'>
-        <a>Topへ戻る</a>
-      </Link>
       <main>
+        <div style={{display: 'flex', width: '50%'}}>
+          <Link href='/'>
+            <a className='return-toppage'>Topへ戻る</a>
+          </Link>
+          <Link　href='/my'>
+            <a className='return-mypage'>マイページ</a>
+          </Link>
+        </div>
         <div className='time-line'>
           {data.map(user => (
             <TimeLineCell nickName={user.nickName} todoList={user.todoList} key={user.id} />
@@ -46,14 +51,22 @@ export default function Home({data}: InferGetServerSidePropsType<typeof getServe
         main {
           flex: 1;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           justify-content: center;
-          align-items: center;
+        }
+
+        .return-toppage {
+          width: 50%;
+          text-align: left;
+        }
+
+        .return-mypage {
+          width: 50%;
+          text-align: right;
         }
 
         .time-line {
-          width: 50%;
-          background: pink;
+          width: 30%;
         }
       `}</style>
     </div>
