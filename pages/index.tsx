@@ -47,34 +47,6 @@ export default function Top({data}: InferGetStaticPropsType<typeof getStaticProp
             <a>見にいく！！！</a>
           </Link>
         </div>
-        <div style={{ flexDirection: 'column', width: '50%' }}>
-          {data.map(user => (
-            <div
-              style={{
-                flexDirection: 'row',
-                display: 'flex',
-                marginBottom: 10
-              }}
-              key={user.id}
-            >
-              <div style={{ display: 'flex', width: '20%' }}>
-                {user.nickName}
-              </div>
-              <div
-                style={{
-                  flexDirection: 'column',
-                  display: 'flex',
-                  width: '50%'
-                }}
-                key={user.id}
-              >
-                {user.todoList.map(({ id, item }) => (
-                  <div key={id}>{item}</div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
       </main>
 
       <style jsx>{`
