@@ -10,6 +10,7 @@ export default function My() {
       <Link href='/home'>
         <a>ホームへ戻る</a>
       </Link>
+      <p>This is MyPaeg !!!!</p>
       <style jsx>{`
         
       `}</style>

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
+import { useState } from 'react'
 
 type userData = {
   id: string;
@@ -22,8 +23,8 @@ export const getStaticProps = async () => {
 }
 
 export default function Top({data}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [pageName, setPageName] = useState<string | undefined>(undefined)
   
-
   return (
     <div className='container'>
       <Head>
@@ -44,7 +45,13 @@ export default function Top({data}: InferGetStaticPropsType<typeof getStaticProp
             Next.jsバージョンでは皆んなのTodoがタイムラインで見ることが出来ます。
           </p>
           <Link href='/home'>
-            <a>見にいく！！！</a>
+            <a style={{marginBottom: 10}}>見にいく！！！</a>
+          </Link>
+          <p>homeかmyを押すと動的ルートテストボタンが押せます。</p>
+          <button onClick={() => setPageName('home')}>home</button>
+          <button onClick={() => setPageName('my')}>my</button>
+          <Link href='/[pid]' as={`${pageName}`}>
+            <button disabled={!pageName ? true : false}>{`動的ルートテスト(${pageName})`}</button>
           </Link>
         </div>
       </main>
