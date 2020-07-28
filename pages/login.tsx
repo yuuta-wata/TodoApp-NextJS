@@ -31,35 +31,3 @@ export default function Login() {
     </View>
   )
 }
-
-{/* <Form
-      onSubmit={async (event) => {
-        event.preventDefault();
-        console.log(state.email);
-
-        try {
-          await login({
-            variables: {
-              email: state.email,
-              password: state.password,
-            },
-          });
-          history.push('/home');
-        } catch {}
-      }}
-    ></Form> */}
-// <LoginInput
-//           placeholder="Eメール"
-//           value={state.email}
-//           onChange={(event) => {
-//             dispatch({ type: 'emailType', value: event.target.value });
-//           }}
-//         />
-//         <LoginInput
-//           type="password"
-//           placeholder="パスワード"
-//           value={state.password}
-//           onChange={(event) => {
-//             dispatch({ type: 'passwordType', value: event.target.value });
-//           }}
-//         />
