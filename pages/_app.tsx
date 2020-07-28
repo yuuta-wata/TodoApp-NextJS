@@ -5,6 +5,11 @@ import { useApollo } from '../lib/apollo'
 export default function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState)
 
+  fetch('http://localhost:4000/refresh_token/', {
+    method: 'POST',
+    credentials: 'include',
+  })
+
   return (
     <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />

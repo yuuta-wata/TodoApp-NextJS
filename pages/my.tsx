@@ -1,26 +1,25 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { GetStaticProps } from 'next'
 
 import { initializeApollo } from '../lib/apollo'
 import { MeDocument, useMeQuery } from '../graphql/generated/graphql'
 
-// export const getStaticPaths = async () => {
+// export const getServerSideProps = async () => {
 //   const apolloClient = initializeApollo()
-//   const res = await apolloClient.query({
+
+//   await apolloClient.query({
 //     query: MeDocument
 //   })
-
 //   return {
 //     props: {
 //       initialApolloState: apolloClient.cache.extract()
-//     },
-//     fallback: res ? false : true
+//     }
 //   }
 // }
 
 export default function My() {
   const { data, loading, error } = useMeQuery()
-
   if (error) {
     const errorMessage = error.graphQLErrors.map(x => x.message)
     return (
@@ -32,6 +31,16 @@ export default function My() {
       </div>
     )
   }
+  if (typeof data === 'undefined') {
+    return (
+      <div>
+        <Link href='/'>
+          <a>Topページへ戻る</a>
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <div>
       <Head>
@@ -41,6 +50,7 @@ export default function My() {
         <a>ホームへ戻る</a>
       </Link>
       <p>This is MyPaeg !!!!</p>
+      <div>{data.me && data.me.nickname}</div>
       <style jsx>{`
         
       `}</style>
