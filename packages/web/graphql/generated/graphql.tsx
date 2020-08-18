@@ -98,17 +98,6 @@ export type DeleteAccountInput = {
   password: Scalars['String'];
 };
 
-export type AllTodoListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllTodoListQuery = (
-  { __typename?: 'Query' }
-  & { allTodoList?: Maybe<Array<Maybe<(
-    { __typename?: 'Todo' }
-    & Pick<Todo, 'id' | 'userId' | 'title'>
-  )>>> }
-);
-
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -118,17 +107,6 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'login'>
-);
-
-export type MeQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MeQuery = (
-  { __typename?: 'Query' }
-  & { me?: Maybe<(
-    { __typename?: 'Users' }
-    & Pick<Users, 'id' | 'nickname' | 'email'>
-  )> }
 );
 
 export type RegisterMutationVariables = Exact<{
@@ -144,40 +122,6 @@ export type RegisterMutation = (
 );
 
 
-export const AllTodoListDocument = gql`
-    query AllTodoList {
-  allTodoList {
-    id
-    userId
-    title
-  }
-}
-    `;
-
-/**
- * __useAllTodoListQuery__
- *
- * To run a query within a React component, call `useAllTodoListQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllTodoListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllTodoListQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllTodoListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllTodoListQuery, AllTodoListQueryVariables>) {
-        return ApolloReactHooks.useQuery<AllTodoListQuery, AllTodoListQueryVariables>(AllTodoListDocument, baseOptions);
-      }
-export function useAllTodoListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllTodoListQuery, AllTodoListQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<AllTodoListQuery, AllTodoListQueryVariables>(AllTodoListDocument, baseOptions);
-        }
-export type AllTodoListQueryHookResult = ReturnType<typeof useAllTodoListQuery>;
-export type AllTodoListLazyQueryHookResult = ReturnType<typeof useAllTodoListLazyQuery>;
-export type AllTodoListQueryResult = ApolloReactCommon.QueryResult<AllTodoListQuery, AllTodoListQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(loginInput: {email: $email, password: $password})
@@ -209,40 +153,6 @@ export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOpti
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
-export const MeDocument = gql`
-    query Me {
-  me {
-    id
-    nickname
-    email
-  }
-}
-    `;
-
-/**
- * __useMeQuery__
- *
- * To run a query within a React component, call `useMeQuery` and pass it any options that fit your needs.
- * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useMeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MeQuery, MeQueryVariables>) {
-        return ApolloReactHooks.useQuery<MeQuery, MeQueryVariables>(MeDocument, baseOptions);
-      }
-export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, baseOptions);
-        }
-export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
-export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
-export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
 export const RegisterDocument = gql`
     mutation Register($nickname: String!, $email: String!, $password: String!) {
   register(registerInput: {nickname: $nickname, email: $email, password: $password})

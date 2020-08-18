@@ -1,7 +1,0 @@
-query AllTodoList {
-  allTodoList {
-    id
-    userId
-    title
-  }
-}
