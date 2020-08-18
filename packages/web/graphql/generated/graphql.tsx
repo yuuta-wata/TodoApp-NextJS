@@ -22,6 +22,7 @@ export type Query = {
   allTodoList?: Maybe<Array<Maybe<Todo>>>;
   getUsers?: Maybe<Array<Maybe<Users>>>;
   me?: Maybe<Users>;
+  helloNestJS: Scalars['String'];
 };
 
 export type Todo = {

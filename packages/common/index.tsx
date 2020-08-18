@@ -1,7 +1,8 @@
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { useMeQuery } from '../graphql/generated/graphql'
+import { useMeQuery } from '../web/graphql/generated/graphql'
 
 export default function My() {
   const { data, loading, error } = useMeQuery()

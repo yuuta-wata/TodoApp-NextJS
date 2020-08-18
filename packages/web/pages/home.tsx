@@ -2,8 +2,10 @@ import Link from 'next/link'
 
 import TimeLineCell from '../components/TimeLineCell'
 import { initializeApollo } from '../lib/apollo'
-import { AllTodoListDocument, useAllTodoListQuery } from '../graphql/generated/graphql'
-
+import {
+  AllTodoListDocument,
+  useAllTodoListQuery
+} from '../graphql/generated/graphql'
 
 export const getServerSideProps = async () => {
   const apolloClient = initializeApollo()
@@ -31,9 +33,14 @@ export default function Home() {
           </Link>
         </div>
         <div className='time-line'>
-          {data.allTodoList && data.allTodoList.map(todo => (
-            <TimeLineCell nickName={todo.userId} todoTitle={todo.title} key={todo.id} />
-          ))}
+          {data.allTodoList &&
+            data.allTodoList.map(todo => (
+              <TimeLineCell
+                nickName={todo.userId}
+                todoTitle={todo.title}
+                key={todo.id}
+              />
+            ))}
         </div>
       </main>
       <style jsx>{`
