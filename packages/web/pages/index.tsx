@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
 
 export default function Top() {
-  const [pageName, setPageName] = useState<string | undefined>(undefined)
-
   return (
     <div className='container'>
       <Head>
@@ -20,19 +17,17 @@ export default function Top() {
             alignItems: 'center'
           }}
         >
-          <p>TodoアプリNext.jsバージョンへようこそ！</p>
+          <p>TodoアプリNext版へようこそ！</p>
+          <p>ログインしてご利用頂けます</p>
+          <Link href='/login'>
+            <a style={{ marginBottom: 10, color: 'blue' }}>ログインする</a>
+          </Link>
           <p>
-            Next.jsバージョンでは皆んなのTodoがタイムラインで見ることが出来ます。
+            アカウントをお持ちでない方は
+            <Link href='/register'>
+              <a style={{ marginBottom: 10, color: 'blue' }}>こちら</a>
+            </Link>
           </p>
-          <Link href='/home'>
-            <a style={{ marginBottom: 10 }}>見にいく！！！</a>
-          </Link>
-          <p>homeかmyを押すと動的ルートテストボタンが押せます。</p>
-          <button onClick={() => setPageName('home')}>home</button>
-          <button onClick={() => setPageName('my')}>my</button>
-          <Link href='/[pid]' as={`${pageName}`}>
-            <button disabled={!pageName ? true : false}>{`動的ルートテスト(${pageName})`}</button>
-          </Link>
         </div>
       </main>
 
@@ -71,4 +66,3 @@ export default function Top() {
     </div>
   )
 }
-
