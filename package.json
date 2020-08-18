@@ -9,6 +9,8 @@
     "build": "lerna run build --scope=@todo/my"
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "@graphql-codegen/typescript": "1.17.4",
+    "@graphql-codegen/typescript-operations": "1.17.4"
   }
 }

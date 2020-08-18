@@ -1,12 +1,8 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
 import * as ApolloReactCommon from '@apollo/react-common';
-import * as ApolloReactComponents from '@apollo/react-components';
-import * as ApolloReactHoc from '@apollo/react-hoc';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -135,6 +131,18 @@ export type MeQuery = (
   )> }
 );
 
+export type RegisterMutationVariables = Exact<{
+  nickname: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'register'>
+);
+
 
 export const AllTodoListDocument = gql`
     query AllTodoList {
@@ -145,25 +153,6 @@ export const AllTodoListDocument = gql`
   }
 }
     `;
-export type AllTodoListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllTodoListQuery, AllTodoListQueryVariables>, 'query'>;
-
-    export const AllTodoListComponent = (props: AllTodoListComponentProps) => (
-      <ApolloReactComponents.Query<AllTodoListQuery, AllTodoListQueryVariables> query={AllTodoListDocument} {...props} />
-    );
-    
-export type AllTodoListProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllTodoListQuery, AllTodoListQueryVariables>
-    } & TChildProps;
-export function withAllTodoList<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllTodoListQuery,
-  AllTodoListQueryVariables,
-  AllTodoListProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllTodoListQuery, AllTodoListQueryVariables, AllTodoListProps<TChildProps, TDataName>>(AllTodoListDocument, {
-      alias: 'allTodoList',
-      ...operationOptions
-    });
-};
 
 /**
  * __useAllTodoListQuery__
@@ -195,25 +184,6 @@ export const LoginDocument = gql`
 }
     `;
 export type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>;
-export type LoginComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<LoginMutation, LoginMutationVariables>, 'mutation'>;
-
-    export const LoginComponent = (props: LoginComponentProps) => (
-      <ApolloReactComponents.Mutation<LoginMutation, LoginMutationVariables> mutation={LoginDocument} {...props} />
-    );
-    
-export type LoginProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>
-    } & TChildProps;
-export function withLogin<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  LoginMutation,
-  LoginMutationVariables,
-  LoginProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, LoginMutation, LoginMutationVariables, LoginProps<TChildProps, TDataName>>(LoginDocument, {
-      alias: 'login',
-      ...operationOptions
-    });
-};
 
 /**
  * __useLoginMutation__
@@ -248,25 +218,6 @@ export const MeDocument = gql`
   }
 }
     `;
-export type MeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<MeQuery, MeQueryVariables>, 'query'>;
-
-    export const MeComponent = (props: MeComponentProps) => (
-      <ApolloReactComponents.Query<MeQuery, MeQueryVariables> query={MeDocument} {...props} />
-    );
-    
-export type MeProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<MeQuery, MeQueryVariables>
-    } & TChildProps;
-export function withMe<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  MeQuery,
-  MeQueryVariables,
-  MeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, MeQuery, MeQueryVariables, MeProps<TChildProps, TDataName>>(MeDocument, {
-      alias: 'me',
-      ...operationOptions
-    });
-};
 
 /**
  * __useMeQuery__
@@ -292,3 +243,35 @@ export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptio
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
+export const RegisterDocument = gql`
+    mutation Register($nickname: String!, $email: String!, $password: String!) {
+  register(registerInput: {nickname: $nickname, email: $email, password: $password})
+}
+    `;
+export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+
+/**
+ * __useRegisterMutation__
+ *
+ * To run a mutation, you first call `useRegisterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [registerMutation, { data, loading, error }] = useRegisterMutation({
+ *   variables: {
+ *      nickname: // value for 'nickname'
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
+        return ApolloReactHooks.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, baseOptions);
+      }
+export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
+export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
+export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
