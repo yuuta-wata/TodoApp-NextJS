@@ -23,6 +23,7 @@ export default function Register() {
         } catch {}
       }}
     >
+      <h2>新規登録ページ</h2>
       <input
         placeholder='ニックネーム'
         autoCapitalize='none'
