@@ -1,33 +1,44 @@
 import { useState } from 'react'
-import { View } from 'react-native'
-import { useRouter } from 'next/router'
 
 import { useLoginMutation } from '../graphql/generated/graphql'
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [loginMutation] = useLoginMutation()
-  const router = useRouter()
-  return (
-    <View>
-      <form onSubmit={async event => {
-        event.preventDefault()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [login, { error, loading }] = useLoginMutation()
 
+  return (
+    <form
+      onSubmit={async e => {
+        e.preventDefault()
         try {
-          await loginMutation({
+          await login({
             variables: {
-              email: email,
-              password: password
+              email,
+              password
             }
           })
-          router.replace('/home')
-        } catch { }
-      }} >
-        <input placeholder="Eメール" value={email} onChange={event => setEmail(event.target.value)} />
-        <input placeholder="パスワード" value={password} onChange={event => setPassword(event.target.value)} />
-        <button type="submit">ログイン</button>
-      </form>
-    </View>
+        } catch {}
+      }}
+    >
+      <h2>ログインページ</h2>
+      <input
+        placeholder='Eメール'
+        autoCapitalize='none'
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <input
+        placeholder='パスワード'
+        autoCapitalize='none'
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+      <button title='ログイン' type='submit'>
+        ログイン
+      </button>
+      {error && <div>Error...</div>}
+      {loading && <div>Loading...</div>}
+    </form>
   )
 }
