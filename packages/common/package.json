@@ -1,14 +1,10 @@
 {
-  "name": "@todo/my",
+  "name": "@todo/common",
   "version": "1.0.0",
-  "main": "dist/common/index.js",
-  "types": "dist/common/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
-  },
-  "devDependencies": {
-    "typescript": "^3.9.7",
-    "react": "16.13.1"
   }
 }
