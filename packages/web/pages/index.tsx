@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { Header } from '@todo/common'
 
 export default function Top() {
   return (
@@ -7,6 +8,7 @@ export default function Top() {
       <Head>
         <title>Todo App</title>
       </Head>
+      <Header />
       <main>
         <div
           style={{

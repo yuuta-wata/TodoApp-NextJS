@@ -9,5 +9,8 @@
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
     "gen": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "@todo/common": "^1.0.0"
   }
 }
