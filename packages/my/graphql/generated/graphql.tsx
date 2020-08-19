@@ -119,6 +119,14 @@ export type GetTodoListQuery = (
   )>>> }
 );
 
+export type LogOutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LogOutMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'logOut'>
+);
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -195,6 +203,35 @@ export function useGetTodoListLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type GetTodoListQueryHookResult = ReturnType<typeof useGetTodoListQuery>;
 export type GetTodoListLazyQueryHookResult = ReturnType<typeof useGetTodoListLazyQuery>;
 export type GetTodoListQueryResult = ApolloReactCommon.QueryResult<GetTodoListQuery, GetTodoListQueryVariables>;
+export const LogOutDocument = gql`
+    mutation LogOut {
+  logOut
+}
+    `;
+export type LogOutMutationFn = ApolloReactCommon.MutationFunction<LogOutMutation, LogOutMutationVariables>;
+
+/**
+ * __useLogOutMutation__
+ *
+ * To run a mutation, you first call `useLogOutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLogOutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [logOutMutation, { data, loading, error }] = useLogOutMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLogOutMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LogOutMutation, LogOutMutationVariables>) {
+        return ApolloReactHooks.useMutation<LogOutMutation, LogOutMutationVariables>(LogOutDocument, baseOptions);
+      }
+export type LogOutMutationHookResult = ReturnType<typeof useLogOutMutation>;
+export type LogOutMutationResult = ApolloReactCommon.MutationResult<LogOutMutation>;
+export type LogOutMutationOptions = ApolloReactCommon.BaseMutationOptions<LogOutMutation, LogOutMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
