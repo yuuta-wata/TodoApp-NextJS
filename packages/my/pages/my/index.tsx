@@ -1,10 +1,14 @@
 import { useState } from 'react'
+import { Header } from '@todo/common'
 
 import {
   useMeQuery,
   useCreateTodoMutation,
-  useGetTodoListQuery
+  useGetTodoListQuery,
+  useLogOutMutation
 } from '../../graphql/generated/graphql'
+
+import { LogoutButton } from '../../components/LogoutButton'
 
 export default function MyPage() {
   const [task, setTask] = useState<string>('')
@@ -26,12 +30,23 @@ export default function MyPage() {
     error: todoListError
   } = useGetTodoListQuery({ pollInterval: 1000 })
 
+  const [logout] = useLogOutMutation()
+
   if (myDataError) return <div>再度ログインしてください</div>
 
   if (myDataLoading) return <div>Loading...</div>
 
   return (
     <div>
+      <Header
+        children={
+          <LogoutButton
+            onPress={() => {
+              logout()
+            }}
+          />
+        }
+      />
       <h2>マイページ</h2>
       {myData && myData.me ? (
         <div>ようこそ！{`${myData.me.nickname}さん！`}</div>
