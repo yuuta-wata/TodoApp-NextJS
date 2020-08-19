@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build --scope=@todo/my"
+    "build": "lerna run build --scope=@todo/common"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
