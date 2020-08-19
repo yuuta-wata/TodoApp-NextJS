@@ -23,12 +23,14 @@ export default function Login() {
     >
       <h2>ログインページ</h2>
       <input
+        type='email'
         placeholder='Eメール'
         autoCapitalize='none'
         value={email}
         onChange={e => setEmail(e.target.value)}
       />
       <input
+        type='password'
         placeholder='パスワード'
         autoCapitalize='none'
         value={password}

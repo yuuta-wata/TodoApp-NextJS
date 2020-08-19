@@ -31,12 +31,14 @@ export default function Register() {
         onChange={e => setNickName(e.target.value)}
       />
       <input
+        type='email'
         placeholder='Eメール'
         autoCapitalize='none'
         value={email}
         onChange={e => setEmail(e.target.value)}
       />
       <input
+        type='password'
         placeholder='パスワード'
         autoCapitalize='none'
         value={password}
