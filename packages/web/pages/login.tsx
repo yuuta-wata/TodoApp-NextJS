@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { useLoginMutation } from '../graphql/generated/graphql'
+import { LoginForm } from '../components/LoginForm'
 
 export default function Login() {
   const [email, setEmail] = useState<string>('')
@@ -8,39 +9,23 @@ export default function Login() {
   const [login, { error, loading }] = useLoginMutation()
 
   return (
-    <form
-      onSubmit={async e => {
-        e.preventDefault()
-        try {
-          await login({
-            variables: {
-              email,
-              password
-            }
-          })
-        } catch {}
-      }}
-    >
-      <h2>ログインページ</h2>
-      <input
-        type='email'
-        placeholder='Eメール'
-        autoCapitalize='none'
-        value={email}
-        onChange={e => setEmail(e.target.value)}
+    <>
+      <LoginForm
+        emailValue={email}
+        emailEvent={e => setEmail(e.target.value)}
+        passwordValue={password}
+        passwordEvent={e => setPassword(e.target.value)}
+        buttonPress={async () => {
+          try {
+            await login({ variables: { email, password } })
+            setEmail('')
+            setPassword('')
+          } catch {}
+        }}
+        isLoading={loading}
       />
-      <input
-        type='password'
-        placeholder='パスワード'
-        autoCapitalize='none'
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <button title='ログイン' type='submit'>
-        ログイン
-      </button>
       {error && <div>Error...</div>}
       {loading && <div>Loading...</div>}
-    </form>
+    </>
   )
 }

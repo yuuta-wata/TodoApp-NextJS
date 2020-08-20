@@ -8,6 +8,7 @@ export interface Props {
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   buttonPress: () => any
+  isLoading: boolean
 }
 
 export const LoginForm = ({
@@ -15,7 +16,8 @@ export const LoginForm = ({
   passwordValue,
   emailEvent,
   passwordEvent,
-  buttonPress
+  buttonPress,
+  isLoading
 }: Props) => (
   <form>
     <Input
@@ -30,6 +32,11 @@ export const LoginForm = ({
       value={passwordValue}
       changeEvent={passwordEvent}
     />
-    <FormButton type='button' title='ログイン' onPress={buttonPress} />
+    <FormButton
+      type='button'
+      title='ログイン'
+      isLoading={isLoading}
+      onPress={buttonPress}
+    />
   </form>
 )

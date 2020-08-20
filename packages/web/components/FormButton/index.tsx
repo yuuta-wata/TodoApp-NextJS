@@ -3,11 +3,12 @@ import { type } from 'os'
 export interface Props {
   type: 'button' | 'submit' | 'reset'
   title: string
+  isLoading: boolean
   onPress: () => any
 }
 
-export const FormButton = ({ type, title, onPress }: Props) => (
-  <button type={type} onClick={onPress}>
+export const FormButton = ({ type, title, isLoading, onPress }: Props) => (
+  <button type={type} disabled={isLoading} onClick={onPress}>
     {title}
   </button>
 )
