@@ -21,8 +21,8 @@ export default {
 // https://storybook.js.org/docs/react/writing-stories/args#story-args
 const Template: Story<Props> = args => <LoginForm {...args} />
 
-export const EmailInput = Template.bind({})
-EmailInput.args = {
+export const Login = Template.bind({})
+Login.args = {
   emailValue: 'yuuta@yuuta.com',
   emailEvent: action('onChangeEmail!!!'),
   passwordValue: '1234',
