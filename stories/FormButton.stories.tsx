@@ -30,7 +30,7 @@ RegsterButton.args = {
   isLoading: false
 }
 
-export const LoginButton = Template.bind([])
+export const LoginButton = Template.bind({})
 LoginButton.args = {
   type: 'button',
   title: 'ログイン',
