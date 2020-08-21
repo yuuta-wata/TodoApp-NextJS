@@ -6,11 +6,21 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build --scope=@todo/common"
+    "build": "lerna run build --scope=@todo/common",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "lerna": "^3.22.1",
+    "@babel/core": "^7.11.4",
     "@graphql-codegen/typescript": "1.17.4",
-    "@graphql-codegen/typescript-operations": "1.17.4"
-  }
+    "@graphql-codegen/typescript-operations": "1.17.4",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-essentials": "^6.0.16",
+    "@storybook/addon-links": "^6.0.16",
+    "@storybook/react": "^6.0.16",
+    "babel-loader": "^8.1.0",
+    "lerna": "^3.22.1",
+    "react-is": "^16.13.1"
+  },
+  "dependencies": {}
 }

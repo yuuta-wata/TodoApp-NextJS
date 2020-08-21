@@ -1,4 +1,4 @@
-import { type } from 'os'
+import React from 'react'
 
 export interface Props {
   type: 'button' | 'submit' | 'reset'
