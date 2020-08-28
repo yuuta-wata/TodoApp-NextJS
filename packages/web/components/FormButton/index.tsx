@@ -4,11 +4,11 @@ export interface Props {
   type: 'button' | 'submit' | 'reset'
   title: string
   isLoading: boolean
-  onPress: () => any
+  onClick: () => any
 }
 
-export const FormButton = ({ type, title, isLoading, onPress }: Props) => (
-  <button type={type} disabled={isLoading} onClick={onPress}>
+export const FormButton = ({ type, title, isLoading, onClick }: Props) => (
+  <button type={type} disabled={isLoading} onClick={onClick}>
     {title}
   </button>
 )

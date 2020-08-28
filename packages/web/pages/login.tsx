@@ -19,7 +19,7 @@ export default function Login() {
         emailEvent={e => setEmail(e.target.value)}
         passwordValue={password}
         passwordEvent={e => setPassword(e.target.value)}
-        buttonPress={async () => {
+        onClick={async () => {
           try {
             await login({ variables: { email, password } })
             window.location.replace('http://localhost:3001/my')

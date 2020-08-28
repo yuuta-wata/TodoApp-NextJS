@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
 
-import { FormButton } from '../packages/web/components/FormButton'
-import { Props } from '../packages/web/components/FormButton'
+import { FormButton, Props } from '.'
 
 export default {
-  title: 'Components/Button',
   component: FormButton,
   decorators: [
     Story => (
@@ -17,7 +15,7 @@ export default {
     )
   ],
   argTypes: { onPress: { action: 'clicked' } }
-} as Meta
+}
 
 // 公式に記載されているやり方
 // https://storybook.js.org/docs/react/writing-stories/args#story-args

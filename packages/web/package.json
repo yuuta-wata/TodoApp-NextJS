@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
-    "gen": "graphql-codegen --config codegen.yml"
+    "gen": "graphql-codegen --config codegen.yml",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",

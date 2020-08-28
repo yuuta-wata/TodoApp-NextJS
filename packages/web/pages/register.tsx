@@ -22,7 +22,7 @@ export default function Register() {
         emailEvent={e => setEmail(e.target.value)}
         passwordValue={password}
         passwordEvent={e => setPassword(e.target.value)}
-        buttonPress={async () => {
+        onClick={async () => {
           try {
             await register({
               variables: { nickname: nickName, email, password }

@@ -7,7 +7,7 @@ export interface Props {
   passwordValue: string
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  buttonPress: () => any
+  onClick: () => any
   isLoading: boolean
 }
 
@@ -16,7 +16,7 @@ export const LoginForm = ({
   passwordValue,
   emailEvent,
   passwordEvent,
-  buttonPress,
+  onClick,
   isLoading
 }: Props) => (
   <form>
@@ -24,19 +24,19 @@ export const LoginForm = ({
       type='email'
       placeholder='Eメール'
       value={emailValue}
-      changeEvent={emailEvent}
+      onChangeEvent={emailEvent}
     />
     <Input
       type='password'
       placeholder='パスワード'
       value={passwordValue}
-      changeEvent={passwordEvent}
+      onChangeEvent={passwordEvent}
     />
     <FormButton
       type='button'
       title='ログイン'
       isLoading={isLoading}
-      onPress={buttonPress}
+      onClick={onClick}
     />
   </form>
 )

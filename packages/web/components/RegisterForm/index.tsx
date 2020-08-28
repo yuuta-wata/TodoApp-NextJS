@@ -9,7 +9,7 @@ export interface Props {
   nickNameEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  buttonPress: () => any
+  onClick: () => any
   isLoading: boolean
 }
 
@@ -20,7 +20,7 @@ export const RegisterForm = ({
   nickNameEvent,
   emailEvent,
   passwordEvent,
-  buttonPress,
+  onClick,
   isLoading
 }: Props) => (
   <form>
@@ -28,25 +28,25 @@ export const RegisterForm = ({
       type='name'
       placeholder='ニックネーム'
       value={nickNameValue}
-      changeEvent={nickNameEvent}
+      onChangeEvent={nickNameEvent}
     />
     <Input
       type='email'
       placeholder='Eメール'
       value={emailValue}
-      changeEvent={emailEvent}
+      onChangeEvent={emailEvent}
     />
     <Input
       type='password'
       placeholder='パスワード'
       value={passwordValue}
-      changeEvent={passwordEvent}
+      onChangeEvent={passwordEvent}
     />
     <FormButton
       type='button'
       title='登録'
       isLoading={isLoading}
-      onPress={buttonPress}
+      onClick={onClick}
     />
   </form>
 )
