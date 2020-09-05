@@ -1,10 +1,10 @@
 import React from 'react'
 import { Story } from '@storybook/react/types-6-0'
 
-import { FormButton, Props } from '.'
+import { LoginForm, Props } from '.'
 
 export default {
-  component: FormButton,
+  component: LoginForm,
   decorators: [
     Story => (
       <div style={{ margin: '3em' }}>
@@ -17,18 +17,13 @@ export default {
 
 // 公式に記載されているやり方
 // https://storybook.js.org/docs/react/writing-stories/args#story-args
-const Template: Story<Props> = args => <FormButton {...args} />
+const Template: Story<Props> = args => <LoginForm {...args} />
 
-export const RegsterButton = Template.bind({})
-RegsterButton.args = {
-  type: 'button',
-  title: '登録',
-  isLoading: false
-}
-
-export const LoginButton = Template.bind({})
-LoginButton.args = {
-  type: 'button',
-  title: 'ログイン',
+export const Login = Template.bind({})
+Login.args = {
+  emailValue: 'yuuta@yuuta.com',
+  emailEvent: () => ({}),
+  passwordValue: '1234',
+  passwordEvent: () => ({}),
   isLoading: false
 }

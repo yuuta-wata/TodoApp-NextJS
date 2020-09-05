@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 
 import { useLoginMutation } from '../graphql/generated/graphql'
 import { LoginForm } from '../components/LoginForm'
@@ -9,7 +8,6 @@ export default function Login() {
   const [password, setPassword] = useState<string>('')
 
   const [login, { error, loading }] = useLoginMutation()
-  const router = useRouter()
 
   return (
     <>
