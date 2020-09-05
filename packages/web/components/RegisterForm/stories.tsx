@@ -20,13 +20,27 @@ export default {
 // https://storybook.js.org/docs/react/writing-stories/args#story-args
 const Template: Story<Props> = args => <RegisterForm {...args} />
 
-export const Register = Template.bind({})
-Register.args = {
-  nickNameValue: 'ゆーた',
+export const Default = Template.bind({})
+Default.args = {
+  nickNameValue: '',
   nickNameEvent: () => {},
-  emailValue: 'yuuta@yuuta.com',
+  emailValue: '',
   emailEvent: () => {},
-  passwordValue: '1234',
+  passwordValue: '',
   passwordEvent: () => {},
   isLoading: false
+}
+
+export const Inputed = Template.bind({})
+Inputed.args = {
+  emailValue: '',
+  emailEvent: () => ({}),
+  passwordValue: '',
+  passwordEvent: () => ({}),
+  isLoading: false,
+  initialState: {
+    name: 'ゆーた',
+    email: 'yuuta@yuuta.com',
+    password: '1234'
+  }
 }

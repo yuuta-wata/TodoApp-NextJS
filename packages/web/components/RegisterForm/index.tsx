@@ -1,4 +1,6 @@
 import React, { ChangeEvent } from 'react'
+import { Form } from 'antd'
+
 import { InputArea } from '../InputArea'
 import { FormButton } from '../FormButton'
 
@@ -10,7 +12,12 @@ export interface Props {
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   onClick: () => any
-  isLoading: boolean
+  isLoading?: boolean
+  initialState?: {
+    name: string
+    email: string
+    password: string
+  }
 }
 
 export const RegisterForm = ({
@@ -21,32 +28,57 @@ export const RegisterForm = ({
   emailEvent,
   passwordEvent,
   onClick,
-  isLoading
+  isLoading,
+  initialState
 }: Props) => (
-  <form>
-    <InputArea
-      type='name'
-      placeholder='ニックネーム'
-      value={nickNameValue}
-      onChangeEvent={nickNameEvent}
-    />
-    <InputArea
-      type='email'
-      placeholder='Eメール'
-      value={emailValue}
-      onChangeEvent={emailEvent}
-    />
-    <InputArea
-      type='password'
-      placeholder='パスワード'
-      value={passwordValue}
-      onChangeEvent={passwordEvent}
-    />
-    <FormButton
-      type='primary'
-      title='登録'
-      isLoading={isLoading}
-      onClick={onClick}
-    />
-  </form>
+  <Form
+    initialValues={{
+      name: initialState ? initialState.name : null,
+      email: initialState ? initialState.email : null,
+      password: initialState ? initialState.password : null
+    }}
+  >
+    <Form.Item
+      name='name'
+      rules={[{ required: true, message: 'ニックネームを入力してください' }]}
+    >
+      <InputArea
+        type='name'
+        placeholder='ニックネーム'
+        value={nickNameValue}
+        onChangeEvent={nickNameEvent}
+      />
+    </Form.Item>
+    <Form.Item
+      name='email'
+      rules={[{ required: true, message: 'Eメールを入力してください' }]}
+    >
+      <InputArea
+        type='email'
+        placeholder='Eメール'
+        value={emailValue}
+        onChangeEvent={emailEvent}
+      />
+    </Form.Item>
+    <Form.Item
+      name='password'
+      rules={[{ required: true, message: 'パスワードを入力してください' }]}
+    >
+      <InputArea
+        type='password'
+        placeholder='パスワード'
+        value={passwordValue}
+        onChangeEvent={passwordEvent}
+      />
+    </Form.Item>
+    <Form.Item>
+      <FormButton
+        type='primary'
+        htmlType='submit'
+        title='登録'
+        isLoading={isLoading}
+        onClick={onClick}
+      />
+    </Form.Item>
+  </Form>
 )

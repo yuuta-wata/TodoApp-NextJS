@@ -4,13 +4,21 @@ import { Button } from 'antd'
 export interface Props {
   type: 'text' | 'link' | 'ghost' | 'primary' | 'default' | 'dashed'
   title: string
-  isLoading: boolean
+  isLoading?: boolean
+  htmlType?: 'button' | 'submit' | 'reset'
   onClick: () => any
 }
 
-export const FormButton = ({ type, title, isLoading, onClick }: Props) => (
+export const FormButton = ({
+  type,
+  title,
+  isLoading,
+  htmlType,
+  onClick
+}: Props) => (
   <Button
     type={type}
+    htmlType={htmlType}
     disabled={isLoading}
     onClick={onClick}
     loading={isLoading}

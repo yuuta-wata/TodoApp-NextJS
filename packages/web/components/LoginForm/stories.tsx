@@ -15,15 +15,26 @@ export default {
   argTypes: { onClick: {} }
 }
 
-// 公式に記載されているやり方
-// https://storybook.js.org/docs/react/writing-stories/args#story-args
 const Template: Story<Props> = args => <LoginForm {...args} />
 
-export const Login = Template.bind({})
-Login.args = {
-  emailValue: 'yuuta@yuuta.com',
+export const Default = Template.bind({})
+Default.args = {
+  emailValue: '',
   emailEvent: () => ({}),
-  passwordValue: '1234',
+  passwordValue: '',
   passwordEvent: () => ({}),
   isLoading: false
+}
+
+export const Inputed = Template.bind({})
+Inputed.args = {
+  emailValue: '',
+  emailEvent: () => ({}),
+  passwordValue: '',
+  passwordEvent: () => ({}),
+  isLoading: false,
+  initialState: {
+    email: 'yuuta@yuuta.com',
+    password: '1234'
+  }
 }
