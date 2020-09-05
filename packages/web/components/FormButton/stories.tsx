@@ -15,20 +15,25 @@ export default {
   argTypes: { onClick: {} }
 }
 
-// 公式に記載されているやり方
-// https://storybook.js.org/docs/react/writing-stories/args#story-args
 const Template: Story<Props> = args => <FormButton {...args} />
 
 export const RegsterButton = Template.bind({})
 RegsterButton.args = {
-  type: 'button',
+  type: 'primary',
   title: '登録',
   isLoading: false
 }
 
 export const LoginButton = Template.bind({})
 LoginButton.args = {
-  type: 'button',
+  type: 'primary',
   title: 'ログイン',
   isLoading: false
+}
+
+export const IsLoading = Template.bind({})
+IsLoading.args = {
+  type: 'primary',
+  title: 'ログイン',
+  isLoading: true
 }

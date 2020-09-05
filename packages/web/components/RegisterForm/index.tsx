@@ -43,7 +43,7 @@ export const RegisterForm = ({
       onChangeEvent={passwordEvent}
     />
     <FormButton
-      type='button'
+      type='primary'
       title='登録'
       isLoading={isLoading}
       onClick={onClick}

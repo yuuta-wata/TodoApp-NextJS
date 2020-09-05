@@ -33,7 +33,7 @@ export const LoginForm = ({
       onChangeEvent={passwordEvent}
     />
     <FormButton
-      type='button'
+      type='primary'
       title='ログイン'
       isLoading={isLoading}
       onClick={onClick}
