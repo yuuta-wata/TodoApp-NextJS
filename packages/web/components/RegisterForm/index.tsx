@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Input } from '../Input'
+import { InputArea } from '../InputArea'
 import { FormButton } from '../FormButton'
 
 export interface Props {
@@ -24,19 +24,19 @@ export const RegisterForm = ({
   isLoading
 }: Props) => (
   <form>
-    <Input
+    <InputArea
       type='name'
       placeholder='ニックネーム'
       value={nickNameValue}
       onChangeEvent={nickNameEvent}
     />
-    <Input
+    <InputArea
       type='email'
       placeholder='Eメール'
       value={emailValue}
       onChangeEvent={emailEvent}
     />
-    <Input
+    <InputArea
       type='password'
       placeholder='パスワード'
       value={passwordValue}

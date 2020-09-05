@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react'
+import { Input } from 'antd'
 
 export interface Props {
   type: string
@@ -7,8 +8,13 @@ export interface Props {
   onChangeEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
 }
 
-export const Input = ({ type, placeholder, value, onChangeEvent }: Props) => (
-  <input
+export const InputArea = ({
+  type,
+  placeholder,
+  value,
+  onChangeEvent
+}: Props) => (
+  <Input
     type={type}
     placeholder={placeholder}
     value={value}

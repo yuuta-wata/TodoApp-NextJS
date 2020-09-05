@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Input } from '../Input'
+import { InputArea } from '../InputArea'
 import { FormButton } from '../FormButton'
 
 export interface Props {
@@ -20,13 +20,13 @@ export const LoginForm = ({
   isLoading
 }: Props) => (
   <form>
-    <Input
+    <InputArea
       type='email'
       placeholder='Eメール'
       value={emailValue}
       onChangeEvent={emailEvent}
     />
-    <Input
+    <InputArea
       type='password'
       placeholder='パスワード'
       value={passwordValue}
