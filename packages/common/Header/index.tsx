@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { CSSProperties, ReactNode } from 'react'
 
-export const Header: React.FC = ({ children }) => {
+export interface Props {
+  style: CSSProperties
+  children?: ReactNode
+}
+
+export const Header = (props: Props) => {
+  const { style, children } = props
   return (
-    <header>
-      <h2>TODO APP</h2>
-      {children && children}
-    </header>
+    <>
+      <h1 style={style}>TODO APP</h1>
+      {children}
+    </>
   )
 }

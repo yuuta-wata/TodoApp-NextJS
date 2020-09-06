@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "build": "lerna run build --scope=@todo/common",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lerna": "lerna"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",

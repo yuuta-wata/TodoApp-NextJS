@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Header } from '@todo/common'
+import { Layout, Space } from 'antd'
+import { Header as TodoHeadre } from '@todo/common'
 
 import {
   useMeQuery,
@@ -11,6 +12,7 @@ import {
 import { LogoutButton } from '../../components/LogoutButton'
 
 export default function MyPage() {
+  const { Header, Content } = Layout
   const [task, setTask] = useState<string>('')
 
   const {
@@ -37,17 +39,28 @@ export default function MyPage() {
   if (myDataLoading) return <div>Loading...</div>
 
   return (
-    <div>
+    <Layout style={{ height: '100vh' }}>
       <Header
-        children={
+        style={{
+          flexDirection: 'row',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+      >
+        <TodoHeadre
+          style={{
+            color: 'white',
+            marginBottom: 0
+          }}
+        >
           <LogoutButton
             onPress={() => {
               logout()
             }}
           />
-        }
-      />
-      <h2>マイページ</h2>
+        </TodoHeadre>
+      </Header>
       {myData && myData.me ? (
         <div>ようこそ！{`${myData.me.nickname}さん！`}</div>
       ) : (
@@ -89,6 +102,6 @@ export default function MyPage() {
             })
           : null}
       </div>
-    </div>
+    </Layout>
   )
 }

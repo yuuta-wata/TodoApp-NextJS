@@ -1,9 +1,12 @@
+import React from 'react'
+import { Button } from 'antd'
+
 interface Props {
   onPress: () => any
 }
 
 export const LogoutButton = ({ onPress }: Props) => (
-  <button type='button' onClick={onPress}>
+  <Button type='default' onClick={onPress}>
     ログアウト
-  </button>
+  </Button>
 )
