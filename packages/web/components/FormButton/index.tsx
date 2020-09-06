@@ -6,7 +6,7 @@ export interface Props {
   title: string
   isLoading?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
-  onClick: () => any
+  onClick?: () => any
 }
 
 export const FormButton = ({

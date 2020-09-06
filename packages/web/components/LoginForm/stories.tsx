@@ -12,7 +12,7 @@ export default {
       </div>
     )
   ],
-  argTypes: { onClick: {} }
+  argTypes: { onSubmit: {} }
 }
 
 const Template: Story<Props> = args => <LoginForm {...args} />

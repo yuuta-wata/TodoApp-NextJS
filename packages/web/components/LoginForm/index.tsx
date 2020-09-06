@@ -9,7 +9,7 @@ export interface Props {
   passwordValue: string
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  onClick: () => any
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => any
   isLoading?: boolean
   initialState?: {
     email: string
@@ -22,15 +22,16 @@ export const LoginForm = ({
   passwordValue,
   emailEvent,
   passwordEvent,
-  onClick,
+  onSubmit,
   isLoading,
   initialState
 }: Props) => (
   <Form
     initialValues={{
-      email: initialState ? initialState.email : null,
-      password: initialState ? initialState.password : null
+      email: initialState ? initialState.email : emailValue,
+      password: initialState ? initialState.password : passwordValue
     }}
+    onSubmitCapture={onSubmit}
   >
     <Form.Item
       name='email'
@@ -39,7 +40,6 @@ export const LoginForm = ({
       <InputArea
         type='email'
         placeholder='Eメール'
-        value={emailValue}
         onChangeEvent={emailEvent}
       />
     </Form.Item>
@@ -50,7 +50,6 @@ export const LoginForm = ({
       <InputArea
         type='password'
         placeholder='パスワード'
-        value={passwordValue}
         onChangeEvent={passwordEvent}
       />
     </Form.Item>
@@ -60,7 +59,6 @@ export const LoginForm = ({
         title='ログイン'
         isLoading={isLoading}
         htmlType='submit'
-        onClick={onClick}
       />
     </Form.Item>
   </Form>

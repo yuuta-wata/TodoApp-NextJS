@@ -4,7 +4,7 @@ import { Input } from 'antd'
 export interface Props {
   type: string
   placeholder: string
-  value: string
+  value?: string
   onChangeEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
 }
 
@@ -17,7 +17,7 @@ export const InputArea = ({
   <Input
     type={type}
     placeholder={placeholder}
-    value={value}
+    value={value ? value : undefined}
     onChange={onChangeEvent}
   />
 )
