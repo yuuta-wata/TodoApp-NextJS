@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { Form } from 'antd'
 
 import { InputArea } from '../InputArea'
@@ -9,7 +9,7 @@ export interface Props {
   passwordValue: string
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => any
+  onSubmit: (event: FormEvent<HTMLFormElement>) => any
   isLoading?: boolean
   initialState?: {
     email: string

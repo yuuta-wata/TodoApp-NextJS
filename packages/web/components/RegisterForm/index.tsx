@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { Form } from 'antd'
 
 import { InputArea } from '../InputArea'
@@ -11,7 +11,7 @@ export interface Props {
   nickNameEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
   passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  onClick: () => any
+  onSubmit: (event: FormEvent<HTMLFormElement>) => any
   isLoading?: boolean
   initialState?: {
     name: string
@@ -27,16 +27,17 @@ export const RegisterForm = ({
   nickNameEvent,
   emailEvent,
   passwordEvent,
-  onClick,
+  onSubmit,
   isLoading,
   initialState
 }: Props) => (
   <Form
     initialValues={{
-      name: initialState ? initialState.name : null,
-      email: initialState ? initialState.email : null,
-      password: initialState ? initialState.password : null
+      name: initialState ? initialState.name : nickNameValue,
+      email: initialState ? initialState.email : emailValue,
+      password: initialState ? initialState.password : passwordValue
     }}
+    onSubmitCapture={onSubmit}
   >
     <Form.Item
       name='name'
@@ -77,7 +78,6 @@ export const RegisterForm = ({
         htmlType='submit'
         title='登録'
         isLoading={isLoading}
-        onClick={onClick}
       />
     </Form.Item>
   </Form>
