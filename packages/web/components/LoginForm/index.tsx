@@ -1,57 +1,40 @@
-import React, { ChangeEvent, FormEvent } from 'react'
-import { Form } from 'antd'
+import React from 'react'
+import { Form, Input } from 'antd'
 
-import { InputArea } from '../InputArea'
 import { FormButton } from '../FormButton'
 
 export interface Props {
-  emailValue: string
-  passwordValue: string
-  emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  onSubmit: (event: FormEvent<HTMLFormElement>) => any
+  emailEvent: (value: string) => any
+  passwordEvent: (value: string) => any
+  onFinish: () => any
   isLoading?: boolean
-  initialState?: {
-    email: string
-    password: string
-  }
 }
 
 export const LoginForm = ({
-  emailValue,
-  passwordValue,
   emailEvent,
   passwordEvent,
-  onSubmit,
-  isLoading,
-  initialState
+  onFinish,
+  isLoading
 }: Props) => (
   <Form
-    initialValues={{
-      email: initialState ? initialState.email : emailValue,
-      password: initialState ? initialState.password : passwordValue
+    onFinish={onFinish}
+    onValuesChange={(_cahgedValue, values) => {
+      emailEvent(values.email)
+      passwordEvent(values.password)
     }}
-    onSubmitCapture={onSubmit}
+    autoComplete='off'
   >
     <Form.Item
       name='email'
       rules={[{ required: true, message: 'Eメールを入力してください' }]}
     >
-      <InputArea
-        type='email'
-        placeholder='Eメール'
-        onChangeEvent={emailEvent}
-      />
+      <Input placeholder='Eメール' />
     </Form.Item>
     <Form.Item
       name='password'
       rules={[{ required: true, message: 'パスワードを入力してください' }]}
     >
-      <InputArea
-        type='password'
-        placeholder='パスワード'
-        onChangeEvent={passwordEvent}
-      />
+      <Input.Password placeholder='パスワード' />
     </Form.Item>
     <Form.Item>
       <FormButton

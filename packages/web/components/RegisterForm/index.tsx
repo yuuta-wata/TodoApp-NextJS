@@ -1,76 +1,49 @@
-import React, { ChangeEvent, FormEvent } from 'react'
-import { Form } from 'antd'
+import React from 'react'
+import { Form, Input } from 'antd'
 
-import { InputArea } from '../InputArea'
 import { FormButton } from '../FormButton'
 
 export interface Props {
-  nickNameValue: string
-  emailValue: string
-  passwordValue: string
-  nickNameEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  emailEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  passwordEvent: (evetn: ChangeEvent<HTMLInputElement>) => any
-  onSubmit: (event: FormEvent<HTMLFormElement>) => any
+  nickNameEvent: (value: string) => any
+  emailEvent: (value: string) => any
+  passwordEvent: (value: string) => any
+  onFinish: () => any
   isLoading?: boolean
-  initialState?: {
-    name: string
-    email: string
-    password: string
-  }
 }
 
 export const RegisterForm = ({
-  nickNameValue,
-  emailValue,
-  passwordValue,
   nickNameEvent,
   emailEvent,
   passwordEvent,
-  onSubmit,
-  isLoading,
-  initialState
+  onFinish,
+  isLoading
 }: Props) => (
   <Form
-    initialValues={{
-      name: initialState ? initialState.name : nickNameValue,
-      email: initialState ? initialState.email : emailValue,
-      password: initialState ? initialState.password : passwordValue
+    onFinish={onFinish}
+    onValuesChange={(_eventValue, values) => {
+      nickNameEvent(values.name)
+      emailEvent(values.email)
+      passwordEvent(values.password)
     }}
-    onSubmitCapture={onSubmit}
+    autoComplete='off'
   >
     <Form.Item
       name='name'
       rules={[{ required: true, message: 'ニックネームを入力してください' }]}
     >
-      <InputArea
-        type='name'
-        placeholder='ニックネーム'
-        value={nickNameValue}
-        onChangeEvent={nickNameEvent}
-      />
+      <Input placeholder='ニックネーム' />
     </Form.Item>
     <Form.Item
       name='email'
       rules={[{ required: true, message: 'Eメールを入力してください' }]}
     >
-      <InputArea
-        type='email'
-        placeholder='Eメール'
-        value={emailValue}
-        onChangeEvent={emailEvent}
-      />
+      <Input placeholder='Eメール' />
     </Form.Item>
     <Form.Item
       name='password'
       rules={[{ required: true, message: 'パスワードを入力してください' }]}
     >
-      <InputArea
-        type='password'
-        placeholder='パスワード'
-        value={passwordValue}
-        onChangeEvent={passwordEvent}
-      />
+      <Input.Password placeholder='パスワード' />
     </Form.Item>
     <Form.Item>
       <FormButton

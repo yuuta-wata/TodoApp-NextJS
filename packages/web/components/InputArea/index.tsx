@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import { Input } from 'antd'
 
 export interface Props {
-  type: string
+  type?: string
   placeholder: string
   value?: string
   onChangeEvent: (evetn: ChangeEvent<HTMLInputElement>) => any

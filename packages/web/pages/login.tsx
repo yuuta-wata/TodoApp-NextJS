@@ -26,12 +26,9 @@ export default function Login() {
       >
         <Space direction='vertical' style={{ width: 500, marginTop: 100 }}>
           <LoginForm
-            emailValue={email}
-            emailEvent={e => setEmail(e.target.value)}
-            passwordValue={password}
-            passwordEvent={e => setPassword(e.target.value)}
-            onSubmit={async e => {
-              e.preventDefault()
+            emailEvent={eventValue => setEmail(eventValue)}
+            passwordEvent={eventValue => setPassword(eventValue)}
+            onFinish={async () => {
               try {
                 await login({ variables: { email, password } })
                 window.location.replace('http://localhost:3001/my')

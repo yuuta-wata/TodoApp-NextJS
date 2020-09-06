@@ -14,6 +14,8 @@ export default function Register() {
   const [register, { error, loading }] = useRegisterMutation()
   const router = useRouter()
 
+  console.log('nickName:', nickName)
+
   return (
     <Layout style={{ height: '100vh' }}>
       <Header>
@@ -29,14 +31,10 @@ export default function Register() {
       >
         <Space direction='vertical' style={{ width: 500, marginTop: 100 }}>
           <RegisterForm
-            nickNameValue={nickName}
-            nickNameEvent={e => setNickName(e.target.value)}
-            emailValue={email}
-            emailEvent={e => setEmail(e.target.value)}
-            passwordValue={password}
-            passwordEvent={e => setPassword(e.target.value)}
-            onSubmit={async e => {
-              e.preventDefault()
+            nickNameEvent={eventValue => setNickName(eventValue)}
+            emailEvent={eventValue => setEmail(eventValue)}
+            passwordEvent={eventValue => setPassword(eventValue)}
+            onFinish={async () => {
               try {
                 await register({
                   variables: { nickname: nickName, email, password }

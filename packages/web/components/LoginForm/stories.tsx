@@ -12,29 +12,14 @@ export default {
       </div>
     )
   ],
-  argTypes: { onSubmit: {} }
+  argTypes: { onFinsh: {} }
 }
 
 const Template: Story<Props> = args => <LoginForm {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  emailValue: '',
   emailEvent: () => ({}),
-  passwordValue: '',
   passwordEvent: () => ({}),
   isLoading: false
-}
-
-export const Inputed = Template.bind({})
-Inputed.args = {
-  emailValue: '',
-  emailEvent: () => ({}),
-  passwordValue: '',
-  passwordEvent: () => ({}),
-  isLoading: false,
-  initialState: {
-    email: 'yuuta@yuuta.com',
-    password: '1234'
-  }
 }
