@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactNode } from 'react'
 
 export interface Props {
-  style: CSSProperties
+  style?: CSSProperties
   children?: ReactNode
 }
 
