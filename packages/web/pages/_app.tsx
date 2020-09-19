@@ -1,5 +1,8 @@
 import { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
 import { ApolloProvider } from '@apollo/react-hooks'
+
+import { store } from '../redux/store'
 import { useApollo } from '../lib/apollo'
 import 'antd/dist/antd.css'
 
@@ -13,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </ApolloProvider>
   )
 }

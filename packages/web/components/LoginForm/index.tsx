@@ -1,26 +1,22 @@
 import React from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input, Button } from 'antd'
 
 import { FormButton } from '../FormButton'
-
-export interface Props {
-  emailEvent: (value: string) => any
-  passwordEvent: (value: string) => any
-  onFinish: () => any
-  isLoading?: boolean
-}
+import { Props } from './type'
 
 export const LoginForm = ({
-  emailEvent,
-  passwordEvent,
+  changeEmail,
+  changePassword,
   onFinish,
-  isLoading
+  onPush,
+  isLoading,
+  testObservable
 }: Props) => (
   <Form
     onFinish={onFinish}
     onValuesChange={(_cahgedValue, values) => {
-      emailEvent(values.email)
-      passwordEvent(values.password)
+      changeEmail(values.email)
+      changePassword(values.password)
     }}
     autoComplete='off'
   >
@@ -44,5 +40,7 @@ export const LoginForm = ({
         htmlType='submit'
       />
     </Form.Item>
+    <p>{testObservable ? testObservable : 'noPush'}</p>
+    <Button onClick={onPush}>PUSU</Button>
   </Form>
 )

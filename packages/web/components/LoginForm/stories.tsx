@@ -1,7 +1,8 @@
 import React from 'react'
 import { Story } from '@storybook/react/types-6-0'
 
-import { LoginForm, Props } from '.'
+import { LoginForm } from '.'
+import { Props } from './type'
 
 export default {
   component: LoginForm,

@@ -3,6 +3,7 @@ import { Layout, Space } from 'antd'
 
 import { useLoginMutation } from '../graphql/generated/graphql'
 import { LoginForm } from '../components/LoginForm'
+import { LoginFormContainer } from '../components/LoginFormContainer'
 
 export default function Login() {
   const { Header, Content } = Layout
@@ -25,7 +26,7 @@ export default function Login() {
         }}
       >
         <Space direction='vertical' style={{ width: 500, marginTop: 100 }}>
-          <LoginForm
+          {/* <LoginForm
             emailEvent={eventValue => setEmail(eventValue)}
             passwordEvent={eventValue => setPassword(eventValue)}
             onFinish={async () => {
@@ -35,7 +36,8 @@ export default function Login() {
               } catch {}
             }}
             isLoading={loading}
-          />
+          /> */}
+          <LoginFormContainer />
           {error && <div>Error...</div>}
           {loading && <div>Loading...</div>}
         </Space>
